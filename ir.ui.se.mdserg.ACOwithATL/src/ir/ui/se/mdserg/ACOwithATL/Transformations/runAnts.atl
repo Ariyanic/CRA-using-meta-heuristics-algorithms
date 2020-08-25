@@ -1,0 +1,65 @@
+-- @atlcompiler emftvm
+
+module runAnts;
+
+create OUT: pathCRA  from IN: RoleteWheel, IN1: pathCRA1;
+
+-- IN1 is popModel0,
+-- OUT is a random path
+
+helper def : rangeMax( c: Sequence(Real) ) : Real = c.at(c.size());
+
+
+helper def : createdRanNum( i : Real ) : Real = 
+	let rnd : "#native"!"java::util::Random" = "#native"!"java::util::Random".newInstance() in 
+	i*rnd.nextDouble();
+	
+
+helper def : RoleteWhileSelection( c: Sequence(Real) ) : Integer = 
+	let max : Real = c->iterate(e; max: Real = c->first() | e.max(max) ) in
+	c->indexOf( max );
+
+
+rule selectAPath{
+	from 
+		f : pathCRA1!Attribute
+	using {
+			root : RoleteWheel!Root = RoleteWheel!Root.allInstances()->select(r | r.name = f.name)->first();
+			index : Integer = thisModule.RoleteWhileSelection(root.wheel);
+			ft: RoleteWheel!Feature =  root.features.at(index);
+		}
+	
+	to 
+		ch: pathCRA!Attribute(		-- The RoleteWhileSelection should be called only once! for each root...
+			name <-  ft.name,
+			id <- ft.id,
+			classname <- ft.classname,
+			tau <- ft.tau,
+			eta <- ft.eta,
+			NumeratorP <- ft.NumeratorP
+--			DenominatorP <- ft.DenominatorP - ft.NumeratorP
+		)
+}
+
+rule selectAPath2{
+	from 
+		cm : pathCRA1!Method
+	
+	using {
+			root : RoleteWheel!Root = RoleteWheel!Root.allInstances()->select(r | r.name = cm.name)->first();
+			index : Integer = thisModule.RoleteWhileSelection(root.wheel) ;
+			ft: RoleteWheel!Feature =  root.features.at(index);
+		}
+
+	to 
+		ch: pathCRA!Method(		
+			name <-  ft.name,
+			id <- ft.id,
+			classname <- ft.classname,
+			tau <- ft.tau,
+			eta <- ft.eta,
+			NumeratorP <- ft.NumeratorP,
+			functionalDependency <- cm.functionalDependency,
+			dataDependency <- cm.dataDependency
+		)
+}

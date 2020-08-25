@@ -1,0 +1,38 @@
+-- @atlcompiler emftvm
+
+module searchSpace;
+create OUT: pathCRA  from IN: architectureCRA ;
+
+helper def : id : Integer = 0;
+
+rule att2att{
+	from 
+		ft : architectureCRA!Attribute , class: architectureCRA!Class
+	to 
+		State : pathCRA!Attribute(
+			name <- ft.name,
+			classname <- class.name
+		)
+	do{
+		 thisModule.id <- thisModule.id + 1;
+		 State.id <- thisModule.id; 		 
+	}
+}
+
+rule method2method{
+	from 
+		cm : architectureCRA!Method , class: architectureCRA!Class
+	to 
+		State : pathCRA!Method(
+			name <- cm.name,
+			classname <- class.name
+		)
+	do{
+		 thisModule.id <- thisModule.id + 1;
+		 State.id <- thisModule.id;
+	}
+}
+
+
+
+

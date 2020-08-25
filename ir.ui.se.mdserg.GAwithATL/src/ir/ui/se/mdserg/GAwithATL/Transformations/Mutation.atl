@@ -1,0 +1,44 @@
+-- @atlcompiler emftvm
+module Mutation;
+create OUT: chromosome  from IN: chromosome;
+
+helper def : testRand(i : Integer) : Integer = 
+	let rnd : "#native"!"java::util::Random" = "#native"!"java::util::Random".newInstance() in rnd.nextInt(i) + 1;
+
+helper def : id : Integer = 0;
+
+helper def : fSize : Integer = chromosome!Feature.allInstances().size() ;
+ 
+helper def : temp : Real = 0;
+
+helper def : MutateClassname(classname: String) : String =
+	if thisModule.testRand(100)<15
+	then
+	    'class'+thisModule.testRand(thisModule.fSize).toString() 
+	else
+		classname
+	endif;
+
+rule att2att{
+	from 
+		ft : chromosome!Attribute
+	to 
+		ch : chromosome!Attribute(
+			name <- ft.name,
+			id <- ft.id,
+			classname <- thisModule.MutateClassname(ft.classname)		
+		)
+}
+
+rule  method2method{
+	from 
+		ft : chromosome!Method
+	to 
+		ch : chromosome!Method(
+			name <- ft.name,
+		  	id <- ft.id,
+			functionalDependency <- ft.functionalDependency,
+			dataDependency <- ft.dataDependency,
+			classname <- thisModule.MutateClassname(ft.classname)
+		)
+}

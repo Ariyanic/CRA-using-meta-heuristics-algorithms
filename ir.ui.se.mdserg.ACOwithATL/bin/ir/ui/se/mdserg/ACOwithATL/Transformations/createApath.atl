@@ -1,0 +1,41 @@
+-- @atlcompiler emftvm
+
+module createApath;
+create OUT: pathCRA  from IN: architectureCRA ;
+helper def : id : Integer = 0;
+
+helper def : fSize : Integer = architectureCRA!Feature.allInstances().size() ;
+
+helper def : testRand(i : Integer) : Integer = 
+	let rnd : "#native"!"java::util::Random" = "#native"!"java::util::Random".newInstance() in rnd.nextInt(i) + 1;
+	
+
+rule att2att{
+	from 
+		ft : architectureCRA!Attribute
+	to 
+		ch : pathCRA!Attribute(
+		name <- ft.name,
+		classname <- 'class' + thisModule.testRand(thisModule.fSize).toString() 
+	)
+	do{
+		 thisModule.id <- thisModule.id + 1;
+		 ch.id <- thisModule.id; 
+	}
+}
+rule method2method{
+	from 
+		cm : architectureCRA!Method
+	to 
+		ch : pathCRA!Method(
+		name <- cm.name,
+		functionalDependency <- cm.functionalDependency,
+		dataDependency <- cm.dataDependency,
+		classname <- 'class' + thisModule.testRand(thisModule.fSize).toString()
+	)
+	do{
+		 thisModule.id <- thisModule.id + 1;
+		 ch.id <- thisModule.id;
+	}
+}
+

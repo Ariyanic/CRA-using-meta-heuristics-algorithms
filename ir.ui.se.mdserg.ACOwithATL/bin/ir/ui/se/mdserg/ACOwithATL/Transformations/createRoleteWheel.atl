@@ -1,0 +1,82 @@
+-- @atlcompiler emftvm
+
+module createRoleteWheel;
+
+create OUT: RoleteWheel  from IN1: pathCRA1 , IN2: pathCRA2;
+
+-- IN1 is a random path, IN2 is the searchSpace
+
+helper def : createwheel(numerators: Sequence(Real), d: Real) : Sequence(Real) =  
+	numerators->iterate(e; p: Sequence(Real)  = Sequence{} | p->append(e/d) );
+	
+
+helper def : getResources(f: pathCRA1!Feature) : Sequence(pathCRA2!Feature) = 
+	let a:  Sequence(pathCRA2!Feature) = pathCRA2!Feature.allInstances()->select(e | e.name = f.name) in 
+	a->excluding(a->last());
+		
+
+helper def : shift(numerators: Sequence(Real)) : Sequence(Real) = 
+	let min : Real = numerators->iterate(e; min: Real = 1000 | e.min(min) ) in
+	if (min < 0 ) then
+		numerators->iterate(e; shift : Sequence(Real) = Sequence{} | shift->append( e + min.abs() ) )
+	else
+		numerators
+	endif;
+
+
+helper def : getNumerators(f:  Sequence(pathCRA2!Feature)) :  Sequence(Real) = 
+	let numerators: Sequence(Real) =  f->iterate(e; nums: Sequence(Real)  = Sequence{} | nums->append(e.NumeratorP) ) in
+	thisModule.shift(numerators);
+
+
+helper def : SumOfNumerators(res : Sequence(pathCRA2!Feature) ) : Real = 
+	thisModule.getNumerators(res)->iterate(e; sum : Real = 0.0 | sum + e);
+		
+	
+	
+rule createRoleteWheel{
+	from 
+		ft: pathCRA1!Feature in IN1
+		
+		using {
+			res : Sequence(pathCRA2!Feature) = thisModule.getResources(ft);
+			denominator : Real = thisModule.SumOfNumerators(res);
+		}
+	to 
+		ch: RoleteWheel!Root(
+			name <- ft.name,
+			features <- res,
+			wheel <- thisModule.createwheel(thisModule.getNumerators(res), denominator),
+			DenominatorP <- denominator
+		)
+}
+
+rule attr2attr{
+	from 
+		ft : pathCRA2!Attribute in IN2
+	to
+		r : RoleteWheel!Attribute(
+			name <-  ft.name,
+			id <- ft.id,
+			classname <- ft.classname,
+			tau <- ft.tau,
+			eta <- ft.eta,
+			NumeratorP <- ft.NumeratorP
+			
+		)
+}
+		
+rule method2method{
+	from 
+		ft : pathCRA2!Method in IN2
+	to
+		r : RoleteWheel!Method(
+			name <-  ft.name,
+			id <- ft.id,
+			classname <- ft.classname,
+			tau <- ft.tau,
+			eta <- ft.eta,
+			NumeratorP <- ft.NumeratorP
+		)
+}
+	

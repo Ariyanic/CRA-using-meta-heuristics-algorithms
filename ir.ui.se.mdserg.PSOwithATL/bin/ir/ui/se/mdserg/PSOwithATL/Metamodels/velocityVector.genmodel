@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/ir.ui.se.mdserg.PSOwithATL/src"
+    modelPluginID="ir.ui.se.mdserg.PSOwithATL" modelName="Velocity" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>velocityVector.ecore</foreignModel>
+  <genPackages prefix="Velocity" disposableProviderFactory="true" ecorePackage="velocityVector.ecore#/">
+    <genClasses ecoreClass="velocityVector.ecore#//Point">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute velocityVector.ecore#//Point/X"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute velocityVector.ecore#//Point/Y"/>
+    </genClasses>
+    <genClasses ecoreClass="velocityVector.ecore#//Vector">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference velocityVector.ecore#//Vector/has"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

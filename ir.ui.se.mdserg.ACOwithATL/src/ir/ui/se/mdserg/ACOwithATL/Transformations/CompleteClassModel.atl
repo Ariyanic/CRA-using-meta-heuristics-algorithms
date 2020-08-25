@@ -1,0 +1,41 @@
+-- @path MM=/ir.ui.se.mdserg.ACOwithATL/src/ir/ui/se/mdserg/ACOwithATL/Metamodels/architectureCRA.ecore
+-- @path MM1=/ir.ui.se.mdserg.ACOwithATL/src/ir/ui/se/mdserg/ACOwithATL/Metamodels/architectureCRA.ecore
+
+-- @atlcompiler emftvm
+
+module CompleteClassModel;
+create OUT : architectureCRA1 from IN : architectureCRA;
+
+helper def : id : Integer = 0;
+
+
+rule att2att{
+	from 
+		ft : architectureCRA!Attribute
+	to 
+		ft1 : architectureCRA1!Attribute(
+			name <- ft.name
+		),
+		class : architectureCRA1!Class
+		do{
+		 	thisModule.id <- thisModule.id + 1;
+		 	class.name <- 'class' + thisModule.id.toString(); 
+		}
+}
+
+rule method2method{
+	from 
+		cm : architectureCRA!Method
+	to 
+		cm1 : architectureCRA1!Method(
+			name <- cm.name,
+			functionalDependency <- cm.functionalDependency,
+			dataDependency <- cm.dataDependency
+		),
+		class : architectureCRA1!Class
+		do{
+		 	thisModule.id <- thisModule.id + 1;
+		 	class.name <- 'class' + thisModule.id.toString(); 
+		}
+}
+

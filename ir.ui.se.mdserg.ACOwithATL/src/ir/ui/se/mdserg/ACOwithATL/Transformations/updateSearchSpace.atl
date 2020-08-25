@@ -1,0 +1,68 @@
+-- @atlcompiler emftvm
+
+module updateSearchSpace;
+create OUT: pathCRA  from IN1: pathCRA , IN2: pathCRA;
+
+-- IN1 is searchSpace, IN2 is the Path, OUT is the updated searchSpace
+
+
+rule updateAttr{
+	from 
+		ft1 : pathCRA!Attribute in IN1 , ft2 : pathCRA!Attribute in IN2
+		(ft1.name=ft2.name and ft1.classname=ft2.classname)
+	to 
+		State : pathCRA!Attribute(
+			name <- ft2.name,
+			classname <- ft2.classname,
+			id <- ft2.id,
+			tau <- ft2.tau, -- tau will be updated
+			eta <- ft2.eta,  -- eta will be updated
+			NumeratorP <- ft2.NumeratorP
+		)
+}
+
+rule updateMethod{
+	from 
+		cm1 : pathCRA!Method in IN1 ,  cm2 : pathCRA!Method in IN2
+		(cm1.name=cm2.name and cm1.classname=cm2.classname)
+	to 
+		State : pathCRA!Method(
+			name <- cm2.name,
+			classname <- cm2.classname,
+			id <- cm2.id,
+			tau <- cm2.tau, -- tau will be updated
+			eta <- cm2.eta,	 -- eta will be updated
+			NumeratorP <- cm2.NumeratorP
+		)
+}
+
+
+rule att2att{
+	from 
+		ft1 : pathCRA!Attribute in IN1 , ft2 : pathCRA!Attribute in IN2
+		(ft1.name=ft2.name and ft1.classname<>ft2.classname) 
+	to 
+		State : pathCRA!Attribute(
+			name <- ft1.name,
+			classname <- ft1.classname,
+			id <- ft1.id,
+			tau <- ft1.tau,
+			eta <- ft1.eta,
+			NumeratorP <- ft1.NumeratorP
+		)
+}
+
+rule method2method{
+	from 
+		cm1 : pathCRA!Method in IN1 , cm2 : pathCRA!Method in IN2
+		 (cm1.name=cm2.name and cm1.classname<>cm2.classname) 
+	to 
+		State : pathCRA!Method(
+			name <- cm1.name,
+			classname <- cm1.classname,
+			id <- cm1.id,
+			tau <- cm1.tau,
+			eta <- cm1.eta,
+			NumeratorP <- cm1.NumeratorP
+		)
+}

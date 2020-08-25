@@ -1,0 +1,15 @@
+-- @atlcompiler emftvm
+
+module computeVelocity;
+create OUT: velocityVector  from IN1: particleCRA, IN2: particleCRA ;
+
+rule particle2Velocity{
+	from 
+		ft1 : particleCRA!Feature in IN1, ft2: particleCRA!Feature in IN2
+		(ft1.id=ft2.id and ft1.classname<>ft2.classname)
+	to 
+		p: velocityVector!Point(
+			X <- ft2.id ,
+			Y <- ft2.classname.substring(6, ft2.classname.length()).toInteger()
+		)
+}

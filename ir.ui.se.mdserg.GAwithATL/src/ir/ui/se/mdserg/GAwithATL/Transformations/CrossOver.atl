@@ -1,0 +1,124 @@
+-- @atlcompiler emftvm
+
+module CrossOver;
+create OUT1: chromosome1, OUT2: chromosome2  from IN1: chromosome, IN2: chromosome;
+
+helper def : testRand(i : Integer) : Integer = 
+	let rnd : "#native"!"java::util::Random" = "#native"!"java::util::Random".newInstance() in rnd.nextInt(i) + 1;
+
+helper def : id : Integer = 0;
+
+helper def : fSize : Integer = chromosome!Feature.allInstances().size();
+
+
+rule IN1EvenAtt2Att{
+	from 
+		ft : chromosome!Attribute in IN1(
+			ft.id.mod(2) = 0
+		)
+	to 
+		ch : chromosome1!Attribute in OUT1(
+			name <- ft.name,
+			id <- ft.id,
+			classname <- ft.classname	
+		)
+}
+
+rule IN1OddAtt2Att{
+	from 
+		ft : chromosome!Attribute in IN1(
+			ft.id.mod(2) <> 0
+		)
+	to 
+		ch : chromosome2!Attribute in OUT2(
+			name <- ft.name,
+			id <- ft.id,
+			classname <- ft.classname	
+		)
+}
+
+rule IN2EvenAtt2Att{
+	from 
+		ft : chromosome!Attribute in IN2(
+			ft.id.mod(2) = 0
+		)
+	to 
+		ch : chromosome2!Attribute in OUT2(
+			name <- ft.name,
+			id <- ft.id,
+			classname <- ft.classname	
+		)
+}
+
+rule IN2OddAtt2Att{
+	from 
+		ft : chromosome!Attribute in IN2(
+			ft.id.mod(2) <> 0
+		)
+	to 
+		ch : chromosome1!Attribute in OUT1(
+			name <- ft.name,
+			id <- ft.id,
+			classname <- ft.classname	
+		)
+}
+
+rule IN1Evenmethod2method{
+	from 
+		ft : chromosome!Method in IN1(
+			ft.id.mod(2) = 0
+		)
+	to 
+		ch : chromosome1!Method in OUT1(
+			name <- ft.name,
+			id <- ft.id,
+			functionalDependency <- ft.functionalDependency,
+			dataDependency <- ft.dataDependency,
+			classname <- ft.classname	
+		)
+}
+
+rule IN1Oddmethod2method{
+	from 
+		ft : chromosome!Method in IN1(
+			ft.id.mod(2) <> 0
+		)
+	to 
+		ch : chromosome2!Method in OUT2(
+			name <- ft.name,
+			id <- ft.id,
+			functionalDependency <- ft.functionalDependency,
+			dataDependency <- ft.dataDependency,
+			classname <- ft.classname	
+		)
+}
+
+rule IN2Evenmethod2method{
+	from 
+		ft : chromosome!Method in IN2(
+			ft.id.mod(2) = 0
+		)
+	to 
+		ch : chromosome2!Method in OUT2(
+			name <- ft.name,
+			id <- ft.id,
+			functionalDependency <- ft.functionalDependency,
+			dataDependency <- ft.dataDependency,
+			classname <- ft.classname	
+		)
+}
+
+rule IN2Oddmethod2method{
+	from 
+		ft : chromosome!Method in IN2(
+			ft.id.mod(2) <> 0
+		)
+	to 
+		ch : chromosome1!Method in OUT1(
+			name <- ft.name,
+			id <- ft.id,
+			functionalDependency <- ft.functionalDependency,
+			dataDependency <- ft.dataDependency,
+			classname <- ft.classname	
+		)
+}

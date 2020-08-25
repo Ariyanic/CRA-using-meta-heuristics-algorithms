@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated architectureCRA -->
+      <package
+            uri="http://momot.big.tuwien.ac.at/architectureCRA/1.0"
+            class="architectureCRA.ArchitectureCRAPackage"
+            genModel="src/ir/ui/se/mdserg/GAwithATL/Metamodels/architectureCRA.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated chromosome -->
+      <package
+            uri="http://www.mychrom.com"
+            class="Chromosome.ChromosomePackage"
+            genModel="src/ir/ui/se/mdserg/GAwithATL/Metamodels/chromosome.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated vector -->
+      <package
+            uri="http://www.Pso.com"
+            class="Pso.PsoPackage"
+            genModel="src/ir/ui/se/mdserg/GAwithATL/Metamodels/vector.genmodel"/>
+   </extension>
+
+</plugin>

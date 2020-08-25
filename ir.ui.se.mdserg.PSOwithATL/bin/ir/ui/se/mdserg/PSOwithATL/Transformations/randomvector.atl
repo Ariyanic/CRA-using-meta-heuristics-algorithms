@@ -1,0 +1,23 @@
+-- @atlcompiler emftvm
+module randomvector;
+
+create OUT1 : velocityVector from IN: particleCRA ;
+
+helper def : fSize : Integer = particleCRA!Feature.allInstances().size() ;
+
+helper def : testRand(i : Integer) : Integer = 
+let rnd : "#native"!"java::util::Random" = "#native"!"java::util::Random".newInstance() in rnd.nextInt(i) + 1;
+
+rule randomVector{
+	from 
+		ft : particleCRA!Feature
+	to 
+		p: velocityVector!Point(
+			X <- ft.id ,
+			Y <- thisModule.testRand(thisModule.fSize)
+		)
+}
+
+
+
+

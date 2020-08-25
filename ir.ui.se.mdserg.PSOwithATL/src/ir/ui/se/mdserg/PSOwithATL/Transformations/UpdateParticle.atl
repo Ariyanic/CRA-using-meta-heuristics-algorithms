@@ -1,0 +1,41 @@
+-- @atlcompiler emftvm
+
+module UpdateParticle;
+
+create OUT : particleCRA from IN1 : particleCRA, IN2 : velocityVector;
+
+helper context particleCRA!Feature def : getid() : Integer =  self.id;
+
+helper context particleCRA!Feature def : getClassname() : String = self.classname;
+
+helper context particleCRA!Feature def : newClassname() : String =
+	if velocityVector!Point.allInstances()->exists(c | self.getid() = c.X)
+	then
+		'class' + velocityVector!Point.allInstances()->select(c | self.getid() = c.X)->last().Y.toString()
+	else 
+		self.getClassname()
+	endif;
+
+rule ExchangeAtt{
+	from 
+		att : particleCRA!Attribute in IN1
+    to
+		 ou : particleCRA!Attribute in OUT( 
+		    name<-att.name,
+			id <- att.id,
+			classname <-att.newClassname()
+	)
+}
+
+rule ExchangeMethod{
+	from 
+		me : particleCRA!Method in IN1
+    to
+		ou : particleCRA!Method in OUT (     
+	    	name<-me.name,
+			id <- me.id,
+			classname <- me.newClassname(),
+			dataDependency <- me.dataDependency,
+			functionalDependency <- me.functionalDependency
+		)
+}

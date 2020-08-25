@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated chromosomeCRA -->
+      <package
+            uri="http://www.chromosomeCRA.com"
+            class="Chromosome.ChromosomePackage"
+            genModel="src/ir/ui/se/mdserg/ACOwithATL/Metamodels/chromosomeCRA.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RoleteWheel -->
+      <package
+            uri="http://www.RoleteWheel.com"
+            class="RoleteWheel.RoleteWheelPackage"
+            genModel="src/ir/ui/se/mdserg/ACOwithATL/Metamodels/RoleteWheel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated pathCRA -->
+      <package
+            uri="http://www.pathCRA.com"
+            class="Path.PathPackage"
+            genModel="src/ir/ui/se/mdserg/ACOwithATL/Metamodels/pathCRA.genmodel"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,38 @@
+-- @atlcompiler emftvm
+module UpdateVector;
+create OUT : velocityVector from IN1 : velocityVector, IN2 : velocityVector;
+
+rule CopyVector1{
+	from
+	   ps1: velocityVector!Vector in IN1
+	to 
+	   ou: velocityVector!Vector in OUT(
+	   		has <- ps1.has 
+	   )
+}
+ rule CopySourcePoint1{
+ 	from
+		ps1: velocityVector!Point in IN1
+	to 
+		ou : velocityVector!Point in OUT(
+			X <- ps1.X,
+			Y <- ps1.Y
+		)
+ }
+rule CopyVector2{
+	from
+	  ps2: velocityVector!Vector in IN2
+	to 
+	   ou2: velocityVector!Vector in OUT(
+	   		has <- ps2.has 
+	   )
+}
+ rule CopySourcePoint2{
+ 	from
+		ps2: velocityVector!Point in IN2
+	to 
+		ou2 : velocityVector!Point in OUT(
+			X <- ps2.X,
+			Y <- ps2.Y
+		)
+ }

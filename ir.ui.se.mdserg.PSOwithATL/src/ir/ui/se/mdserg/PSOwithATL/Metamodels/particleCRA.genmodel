@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ir.ui.se.mdserg.PSOwithATLnew/src" modelPluginID="ir.ui.se.mdserg.PSOwithATLnew"
+    modelName="ParticleCRA" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>particleCRA.ecore</foreignModel>
+  <genPackages prefix="Particle" disposableProviderFactory="true" ecorePackage="particleCRA.ecore#/">
+    <genClasses ecoreClass="particleCRA.ecore#//Method">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference particleCRA.ecore#//Method/functionalDependency"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference particleCRA.ecore#//Method/dataDependency"/>
+    </genClasses>
+    <genClasses ecoreClass="particleCRA.ecore#//Attribute"/>
+    <genClasses ecoreClass="particleCRA.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute particleCRA.ecore#//Feature/classname"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute particleCRA.ecore#//Feature/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute particleCRA.ecore#//Feature/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

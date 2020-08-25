@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_2SkJQMHZEemS58HhGneBfg" type="Ecore" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_2ZpBoMHZEemS58HhGneBfg" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_2ZzZsMHZEemS58HhGneBfg" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_2ZzZscHZEemS58HhGneBfg" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_2ZzZssHZEemS58HhGneBfg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_2ZzZs8HZEemS58HhGneBfg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_2ZzZtMHZEemS58HhGneBfg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_2ZzZtcHZEemS58HhGneBfg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_2ZzZtsHZEemS58HhGneBfg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_2ZzZt8HZEemS58HhGneBfg" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_2ZzZuMHZEemS58HhGneBfg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_2ZzZucHZEemS58HhGneBfg"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="velocityVector.ecore#//Point"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2ZpBocHZEemS58HhGneBfg" y="112"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_2Z0AwMHZEemS58HhGneBfg" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_2Z0AwsHZEemS58HhGneBfg" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_2Z0Aw8HZEemS58HhGneBfg" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_2Z0AxMHZEemS58HhGneBfg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_2Z0AxcHZEemS58HhGneBfg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_2Z0AxsHZEemS58HhGneBfg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_2Z0Ax8HZEemS58HhGneBfg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_2Z0AyMHZEemS58HhGneBfg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_2Z0AycHZEemS58HhGneBfg" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_2Z0AysHZEemS58HhGneBfg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_2Z0Ay8HZEemS58HhGneBfg"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="velocityVector.ecore#//Vector"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2Z0AwcHZEemS58HhGneBfg" x="6"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_2SkJQcHZEemS58HhGneBfg"/>
+  <element xmi:type="ecore:EPackage" href="velocityVector.ecore#/"/>
+  <edges xmi:type="notation:Connector" xmi:id="_2bh4AMHZEemS58HhGneBfg" type="4003" source="_2Z0AwMHZEemS58HhGneBfg" target="_2ZpBoMHZEemS58HhGneBfg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_2bh4A8HZEemS58HhGneBfg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_2bh4BMHZEemS58HhGneBfg" x="-15" y="24"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_2bh4BcHZEemS58HhGneBfg" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_2bifEMHZEemS58HhGneBfg" y="24"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_2bh4AcHZEemS58HhGneBfg" fontName="Segoe UI"/>
+    <element xmi:type="ecore:EReference" href="velocityVector.ecore#//Vector/has"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2bh4AsHZEemS58HhGneBfg" points="[0, 0, 0, -60]$[0, 60, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2bpz0MHZEemS58HhGneBfg" id="(0.5,1.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2bpz0cHZEemS58HhGneBfg" id="(0.5,0.0)"/>
+  </edges>
+</notation:Diagram>

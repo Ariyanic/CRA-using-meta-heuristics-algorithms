@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated particleCRA -->
+      <package
+            uri="http://www.particleCRA.com"
+            class="Particle.ParticlePackage"
+            genModel="src/ir/ui/se/mdserg/PSOwithATL/Metamodels/particleCRA.genmodel"/>
+   </extension>
+
+</plugin>
